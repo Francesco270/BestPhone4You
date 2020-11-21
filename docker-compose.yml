@@ -1,0 +1,26 @@
+version: "3.0"
+services:
+  web-server:
+    build:
+      dockerfile: web-server.Dockerfile
+      context: .
+    environment:
+      BP4Y_DB_HOST: mariadb-server
+      BP4Y_DB_NAME: bp4ydb
+      BP4Y_DB_USERNAME: root
+      BP4Y_DB_PASSWORD: docker
+    volumes:
+      - "./src/:/var/www/html/"
+      - "./:/var/www/"
+    ports:
+      - "8080:80"
+  mariadb-server:
+    image:
+      mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: docker
+      BP4Y_DB_NAME: bp4ydb
+    volumes:
+      - "./database-definitions/:/docker-entrypoint-initdb.d"
+    ports:
+      - "8086:3306"
