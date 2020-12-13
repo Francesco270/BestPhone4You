@@ -38,7 +38,7 @@
 <body>
     <div id="mainContainer">
         <img src="./assets/images/bp4y-logo.png" alt="BestPhone4You">
-        <span>COMING SOON</span>
+        <span>BOH</span>
     </div>
 </body>
 </html>
