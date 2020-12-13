@@ -1,0 +1,48 @@
+:root
+{
+    --primary-color: #F6D04E;
+    --secondary-color: #2D3039;
+}
+
+html
+{
+    width: 100%;
+    height: 100%;
+}
+
+body
+{
+    width: 100%;
+    height: 100%;
+
+    margin: 0;
+    padding: 0;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    font-family: 'Poppins', sans-serif;
+}
+
+#mainContainer
+{
+    display: flex;
+    flex-direction: column;
+
+    margin: auto;
+}
+
+#mainContainer img
+{
+    width: 60vw;
+}
+
+#mainContainer span
+{
+    font-size: 2em;
+    text-align: center;
+    letter-spacing: 3px;
+
+    color: var(--secondary-color);
+}
