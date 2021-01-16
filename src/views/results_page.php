@@ -107,7 +107,7 @@
                                 $network_technology_image_path = BP4Y_APP_ROOT_PATH . "assets/icons/4g_lte.svg";
                             }
                         ?>
-                        <?php if(isset($network_technology_image)): ?>
+                        <?php if(isset($network_technology_image_path)): ?>
                             <img src="<?php echo $network_technology_image_path; ?>" class="network-technology">
                         <?php endif; ?>
                     </div>
