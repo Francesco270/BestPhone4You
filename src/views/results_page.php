@@ -166,7 +166,7 @@
                                     }
                                 ?>
                             </span>
-                            <span><b>RAM:</b> 8 <?php echo $smartphone->RAM; ?></span>
+                            <span><b>RAM:</b> <?php echo $smartphone->RAM; ?> GB</span>
                             <span><b>GPU:</b> <?php echo $smartphone->GPU; ?></span>
                             <span><b>Memoria Interna:</b> <?php echo $smartphone->capacitaMemoriaInterna; ?> GB</span>
                             <span><b>Memoria Espandibile:</b> <?php echo $smartphone->memoriaEspandibile == 1 ? "Sì" : "No"; ?></span>
