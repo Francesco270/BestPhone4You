@@ -45,7 +45,6 @@
 ?>
 
 <body>
-    <img id="site-logo" src="./assets/images/bp4y-logo.png" alt="BestPhone4You">
     <div id="application-view-container">
         <div id="results-page-intro-container" class="column-container">
             <div class="row-container">
