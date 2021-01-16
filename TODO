@@ -1,0 +1,38 @@
+TODO List:
+  ☐ index.php
+    ☐ Add an animation to the Smartphones images
+  ☐ results_page.php:
+    ☐ If only one Smartphone is found, then a special screen has to be shown
+      "Something like 'This is the Smartphone which is the best for you'"
+    ☐ If only one Smartphone is found, then the price sort <select> must not be shown
+      It would have no sense to show the price sort filter with only one Smartphone,
+      since there is nothing to sort
+    ✔ Implement "Complete" view mode
+    ☐ Implement price sorting feature
+    ✔ Free all the session variables at the end
+    ☐ Implement Feedback feature using a form that the user can display at the end
+    ☐ Implement session saving and results page sharing feature via URL
+    ☐ Show a different intro message if a user opens a shared URL
+    ✔ Implement session recovery feature
+      If the page is refreshed or closed, or a network problem occurs,
+      then the user is asked if he wants to resume the procedure where
+      it was left, or if he wants to restart again.
+    ☐ Implement visualization of questions and answers
+    ☐ Implement other shop selection for a given smartphone
+      In this way the user can view other prices that other shops
+      offer for a specific smartphone, in addition to the main shop
+      that has the best price
+  ☐ Other:
+    ✔ Change iOS Logo Word Mark with a bolder one
+    ✔ Sanitize and do proper checks to the responses values
+    ☐ Use the EM unit for the font-sizes and other sizes
+    ☐ Find another way to retrieve informations of questions and answers, to avoid redundancy
+      ... this data can be found twice in the questions' templates and in ./models/questions_and_answers.php.
+      That's not good. This data has to be defined only once
+    ☐ Reorganize CSS
+    ☐ Ensure that all the price ranges are covered
+
+Optional things to do:
+  ☐ Allow only one tab to be opened in order to avoid session problems
+  ☐ Create accordion buttons to open or close the specs category for the complete view mode on mobile
+      ... since it's very long to display

@@ -1,7 +1,9 @@
 :root
 {
     --primary-color: #F6D04E;
+    --primary-color-light: #FFDF71;
     --secondary-color: #2D3039;
+    font-size: 16px;
 }
 
 html
@@ -13,36 +15,1791 @@ html
 body
 {
     width: 100%;
-    height: 100%;
 
     margin: 0;
-    padding: 0;
+    padding: 3rem 0 0 0;
     
     display: flex;
     flex-direction: column;
     align-items: center;
     
     font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+
+    color: var(--secondary-color);
 }
 
-#mainContainer
+.text-align-center
+{
+    text-align: center;
+}
+
+#application-view-container.perform-view-animation
+{
+    opacity: 0;
+}
+
+/* Start of Main page */
+
+#site-logo
+{
+    height: 120px;
+    margin: 0 0 3rem 0;
+}
+
+#application-view-container
 {
     display: flex;
     flex-direction: column;
+    align-items: center;
 
-    margin: auto;
+    opacity: 1;
+
+    transition: opacity 1s cubic-bezier(0.4, 0.4, 0.1, 1);
 }
 
-#mainContainer img
+#homepage-heading
 {
-    width: 60vw;
+    margin: 0;
+    font-size: 36px;
 }
 
-#mainContainer span
+#homepage-smartphones-container
 {
-    font-size: 2em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    margin: 3rem 0;
+}
+
+#homepage-smartphones-container img
+{
+    height: 200px;
+
+    margin: 0 0.9rem;
+}
+
+#homepage-cta-heading
+{
+    margin: 0;
+    font-size: 48px;
+}
+
+#homepage-cta-text
+{
+    width: 680px;
+
+    margin: 1.5rem 0 2rem 0;
+    font-size: 18px;
+}
+
+.bp4y-button
+{
+    min-width: 180px;
+
+    background-color: var(--primary-color);
+    color: #000;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5em;
+    font-weight: bold;
+
+    -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
+    border: none;
+    border-radius: 50px;
+    outline: none;
+
+    padding: 1rem 2rem;
+
+    cursor: pointer;
+
+    transition: color 0.2s, background-color 0.2s;
+}
+
+.bp4y-button.secondary
+{
+    background-color: rgba(0, 0, 0, 0);
+    border: 2px solid var(--secondary-color);
+}
+
+.bp4y-button:hover,
+.bp4y-button:focus
+{
+    background-color: var(--primary-color-light);
+}
+
+.bp4y-button.secondary:hover,
+.bp4y-button.secondary:focus
+{
+    background-color: var(--secondary-color);
+    color: #FFF;
+}
+
+/* End of Main Page */
+
+/* Start of Modal Box */
+
+#screen-fade-container
+{
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: rgba(0,0,0,0.7);
+
+    transition: background-color 0.4s;
+}
+
+#screen-fade-container .modal-dialog-box
+{
+    background-color: #fff;
+    border-radius: 16px;
+    margin: 0 2rem;
+    padding: 2rem 4rem;
+
+    font-size: 10px;
+}
+
+@media only screen and (max-width: 1440px)
+{
+    #screen-fade-container .modal-dialog-box
+    {
+        font-size: 12px;
+    }
+}
+
+@media only screen and (max-width: 1024px)
+{
+    #screen-fade-container .modal-dialog-box
+    {
+        font-size: 14px;
+    }
+}
+
+#screen-fade-container .modal-dialog-box .heading,
+#screen-fade-container .modal-dialog-box .prompt
+{
+    display: block;
+
     text-align: center;
-    letter-spacing: 3px;
+}
+
+#screen-fade-container .modal-dialog-box .heading
+{
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+#screen-fade-container .modal-dialog-box .prompt
+{
+    max-width: 580px;
+
+    font-size: 1rem;
+    margin: 1rem 0 0 0;
+}
+
+#screen-fade-container .modal-dialog-box .buttons-container
+{
+    margin: 1rem 0 0 0;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+#screen-fade-container .modal-dialog-box .buttons-container button
+{
+    margin: 0 0.6em;
+}
+
+@media only screen and (max-width: 800px)
+{
+    #screen-fade-container .modal-dialog-box
+    {
+        padding: 2rem;
+    }
+
+    #screen-fade-container .modal-dialog-box .heading
+    {
+        font-size: 1.5rem;
+    }
+
+    #screen-fade-container .modal-dialog-box .prompt
+    {
+        max-width: 580px;
+    }
+
+    #screen-fade-container .modal-dialog-box .buttons-container
+    {
+        flex-direction: column;
+    }
+    
+    #screen-fade-container .modal-dialog-box .buttons-container button
+    {
+        min-width: 260px;
+        margin: 0.6em 0;
+    }
+}
+
+@media only screen and (max-width: 400px)
+{
+    #screen-fade-container .modal-dialog-box
+    {
+        padding: 2rem 1rem;
+    }
+
+    #screen-fade-container .modal-dialog-box .prompt
+    {
+        font-size: 14px;
+    }
+}
+
+/* End of Modal Box */
+
+/* Start of Question Pages */
+
+.question-container
+{
+    border-left: 16px solid var(--primary-color);
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    margin: 0 2rem 4rem 2rem;
+    padding: 0 0 0 12px;
+}
+
+.question-number
+{
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+
+    color: #6C6E74;
+}
+
+.question-text
+{
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+.question-text-small
+{
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+#price-range-slider-container
+{
+    position: relative;
+
+    width: 60vw;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+
+    padding: 6rem 0 0 0;
+}
+
+#price-range-slider-value-label
+{
+    position: absolute;
+    top: 0px;
+
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 3rem;
+    font-weight: 600;
+}
+
+.price-range-slider-side-label
+{
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+#price-range-slider
+{
+    -webkit-appearance: none;
+    appearance: none;
+    
+    width: 70%;
+    height: 30px;
+
+    border-radius: 12px;
+    
+    /* background: #F8F8F8; */
+    background: #F0F0F0;
+    outline: none;
+
+    margin: 0 2rem;
+}
+
+#price-range-slider::-webkit-slider-thumb
+{
+    -webkit-appearance: none;
+    appearance: none;
+
+    width: 52px;
+    height: 52px;
+
+    border-radius: 50px;
+
+    background-color: var(--secondary-color);
+    cursor: pointer;
+}
+
+#price-range-slider::-moz-range-thumb
+{
+    width: 52px;
+    height: 52px;
+
+    border-radius: 50px;
+
+    background-color: var(--secondary-color);
+    cursor: pointer;
+}
+
+#price-range-slider::-ms-thumb
+{
+    width: 52px;
+    height: 52px;
+
+    border-radius: 0px;
+
+    background-color: var(--secondary-color);
+    cursor: pointer;
+}
+
+.question-help
+{
+    max-width: 750px;
+
+    font-size: 1.5rem;
+    text-align: center;
+
+    margin: 3rem 1rem;
+}
+
+.question-help.small
+{
+    font-size: 1.2rem;
+}
+
+.images-and-buttons-row-container
+{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+.buttons-row-container
+{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.buttons-row-container button:not(:first-of-type)
+{
+    margin: 0 0 0 2rem;
+}
+
+.image-and-response-container
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 4rem;
+}
+
+.image-and-response-container span
+{
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.image-and-response-container img
+{
+    margin: 2rem 0;
+}
+
+#smartphone-display-small-image
+{
+    width: 70px;
+}
+
+#smartphone-display-medium-image
+{
+    width: 90px;
+}
+
+#smartphone-display-large-image
+{
+    width: 108px;
+}
+
+#bp4y-back-button
+{
+    width: 64px;
+    height: 64px;
+
+    position: fixed;
+    bottom: 64px;
+    left: 64px;
+
+    -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
+    outline: none;
+    border: 1px solid var(--secondary-color);
+    border-radius: 100px;
+
+    background-color: #FFF;
+
+    cursor: pointer;
+}
+
+#bp4y-back-button img
+{
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    pointer-events: none;
+}
+
+/* End of Question Pages */
+
+/* Start of Results Page */
+
+.row-container
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.column-container
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.column-container.align-flex-start
+{
+    align-items: flex-start;
+}
+
+#results-page-intro-container > div > div
+{
+    margin: 0 2rem 1rem 2rem;
+    text-align: center;
+}
+
+#results-page-intro-container > div > div h1
+{
+    font-size: 2rem;
+
+    margin: 0;
+}
+
+#results-page-intro-container > div > div p
+{
+    font-size: 1rem;
+
+    margin: 0;
+}
+
+#results-page-intro-container > p
+{
+    font-size: 1rem;
+    text-align: center;
+
+    margin: 0;
+}
+
+.bp4y-button.small
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1rem;
+
+    padding: 0.7rem 1.5rem;
+}
+
+.bp4y-button.small.primary
+{
+    background-color: var(--primary-color);
+    color: #000;
+
+    border: 2px solid var(--primary-color);
+}
+
+.bp4y-button.small.primary:hover,
+.bp4y-button.small.primary:focus
+{
+    background-color: var(--primary-color-light);
+}
+
+#results-page-intro-container-buttons-container.row-container button:first-of-type
+{
+    margin: 0 1.5rem 0 0;
+}
+
+.bp4y-button.small img,
+.bp4y-button.small svg
+{
+    margin: 0 10px 0 0;
+}
+
+.bp4y-button.small.secondary
+{
+    background-color: #FFF;
+    color: var(--secondary-color);
+
+    border: 2px solid var(--secondary-color);
+}
+
+.bp4y-button.small.secondary:hover,
+.bp4y-button.small.secondary:focus
+{
+    background-color: var(--secondary-color);
+    color: #FFF;
+}
+
+.bp4y-button.small.secondary:hover svg path,
+.bp4y-button.small.secondary:focus svg path
+{
+    fill: #FFF;
+}
+
+#results-page-smartphone-count-text
+{
+    color: var(--primary-color); 
+    font-size: 2em;
+    margin: 0 0.2rem;
+}
+
+#results-page-view-options-rows
+{
+    width: 80vw;
+    justify-content: flex-start;
+
+    margin: 2rem 0 0 0;
+}
+
+@media only screen and (max-width: 1800px)
+{
+    #results-page-view-options-rows
+    {
+        width: 90vw;
+    }
+}
+
+#results-page-view-options-rows > div
+{
+    display: flex;
+    flex-direction: column;
+    
+    padding: 0rem 1.5rem 0.8rem 1.5rem;
+    
+    box-shadow: 0 3px 6px rgba(116, 116, 116, 0.16);
+    box-sizing: border-box;
+    border-radius: 8px;
+}
+
+#results-page-view-options-rows > div:first-of-type
+{
+    margin: 0 1rem 0 0;
+}
+
+#results-page-view-options-rows > div > span
+{
+    position: relative;
+    top: -10px;
+
+    font-size: 14px;
+    font-weight: 600;
+    
+    color: var(--secondary-color);
+}
+
+#results-page-view-options-rows > div > div > button
+{
+    padding: 0;
+    
+    background-color: #fff;
+
+    -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
+    border: none;
+
+    font-family: 'Poppins';
+
+    cursor: pointer;
+}
+
+#results-page-view-options-rows > div > div > button:first-of-type
+{
+    margin: 0 1.5rem 0 0;
+}
+
+#results-page-view-options-rows > div > div > button:focus
+{
+    outline: none;
+}
+
+#results-page-view-options-rows > div > div > button svg
+{
+    width: 24px;
+    height: 24px;
+
+    margin: 0 0.2rem 0 0;
+
+    pointer-events: none;
+}
+
+#results-page-view-options-rows > div > div > button svg path
+{
+    fill: var(--secondary-color);
+
+    transition: fill 0.2s;
+}
+
+#results-page-view-options-rows > div > div > button.selected svg path,
+#results-page-view-options-rows > div > div > button:hover svg path,
+#results-page-view-options-rows > div > div > button:focus svg path
+{
+    fill: #079CFF;
+}
+
+#results-page-view-options-rows > div > div > button span
+{
+    font-family: 'Poppins';
+    font-size: 14px;
+    font-weight: 600;
 
     color: var(--secondary-color);
+
+    transition: color 0.2s;
+
+    pointer-events: none;
+}
+
+#results-page-view-options-rows > div > div > button.selected span,
+#results-page-view-options-rows > div > div > button:hover span,
+#results-page-view-options-rows > div > div > button:focus span
+{
+    color: #079CFF;
+}
+
+#results-page-view-options-rows hr
+{
+    width: 100%;
+
+    border: none;
+    border-top: 2px solid var(--secondary-color);
+    border-top-style: dotted;
+
+    margin: 0 0 0 0.5rem;
+}
+
+#results-page-view-smartphones
+{
+    width: 100%;
+
+    margin: 1rem 0 0 0;
+}
+
+#results-page-view-smartphones > div
+{
+    border: 1px solid #E6E6E6;
+    border-radius: 4px;
+
+    margin: 0 0 3rem 0;
+    padding: 1.5rem 1rem;
+}
+
+#results-page-view-smartphones > div .brand-name
+{
+    grid-area: smartphone-brand-name;
+
+    /* font-size: 1em; */
+    font-size: 1.2em;
+    font-weight: 600;
+    text-transform: uppercase;
+
+    color: #575961;
+}
+
+#results-page-view-smartphones > div .model-name
+{
+    grid-area: smartphone-model-name;
+    
+    /* font-size: 1.5em; */
+    font-size: 1.7em;
+    font-weight: 600;
+}
+
+#results-page-view-smartphones > div .smartphone-image-and-network-technology
+{
+    grid-area: smartphone-image-and-network-technology;
+}
+
+#results-page-view-smartphones > div .os-logo
+{
+    grid-area: smartphone-os-logo;
+
+    max-width: 130px;
+}
+
+#results-page-view-smartphones > div .general-specs
+{
+    grid-area: smartphone-general-specs;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    font-size: 1em;
+
+    margin: 1rem 0 0 0;
+}
+
+#results-page-view-smartphones > div .summarized-specs
+{
+    font-size: 0.9rem;
+    text-align: center;
+
+    margin: 0.7rem 0;
+}
+
+#results-page-view-smartphones > div .price
+{
+    font-size: 2.3em;
+    font-weight: 700;
+}
+
+#results-page-view-smartphones > div .shop-image
+{
+    max-width: 90px;
+}
+
+#results-page-view-smartphones > div a
+{
+    margin: 0.7rem 0 0 0;
+
+    text-decoration: none;
+}
+
+#results-page-view-smartphones > div > div > a .goto-shop-button
+{
+    font-family: 'Poppins';
+    font-size: 1em;
+    font-weight: 700;
+
+    background: linear-gradient(135deg, #F6D04E, #E89C45);
+    color: #000;
+    -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
+    border: none;
+    border-radius: 4px;
+
+    padding: 0.6rem 1.2rem;
+
+    cursor: pointer;
+}
+
+#results-page-view-smartphones > div > div > a .goto-shop-button img
+{
+    margin: 0 0.5rem 0 0;
+}
+
+/* Start of Compact View Mode Styling */
+
+#results-page-view-smartphones.view-mode-compact > div
+{
+    /* min-height: 570px; */
+    /* min-width: 400px; */
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#results-page-view-smartphones.view-mode-compact > div .model-name
+{
+    margin: 0.8rem 1.6rem;
+}
+
+#results-page-view-smartphones.view-mode-compact > div .smartphone-image-and-network-technology
+{
+    margin: 0 0 0.3rem 0;
+}
+
+#results-page-view-smartphones.view-mode-compact > div .smartphone-image-and-network-technology .smartphone-image
+{
+    max-width: 140px;
+}
+
+#results-page-view-smartphones.view-mode-compact > div .general-specs
+{
+    display: none;
+}
+
+#results-page-view-smartphones.view-mode-compact > div .category-specs
+{
+    display: none;
+}
+
+/* End of Compact View Mode Styling */
+
+/* Start of Complete View Mode Styling */
+
+#results-page-view-smartphones.view-mode-complete
+{
+    flex-direction: column;
+}
+
+#results-page-view-smartphones.view-mode-complete > div
+{
+    width: 100%;
+    box-sizing: border-box;
+
+    display: grid;
+    grid-template-rows: 1fr auto auto 2fr;
+    grid-template-columns: repeat(4, auto);
+    gap: 0px 0px;
+    grid-template-areas:
+      "smartphone-image-and-network-technology smartphone-brand-name smartphone-categories-specs-wrapper smartphone-price-and-shop-container"
+      "smartphone-image-and-network-technology smartphone-model-name smartphone-categories-specs-wrapper smartphone-price-and-shop-container"
+      "smartphone-image-and-network-technology smartphone-os-logo smartphone-categories-specs-wrapper smartphone-price-and-shop-container"
+      "smartphone-image-and-network-technology smartphone-general-specs smartphone-categories-specs-wrapper smartphone-price-and-shop-container";
+    align-items: center;
+
+    font-size: 14px;
+    padding: 1.5rem 2.5rem;
+}
+
+@media only screen and (max-width: 1700px)
+{
+    #results-page-view-smartphones.view-mode-complete > div
+    {
+        font-size: 13px;
+    }
+}
+
+@media only screen and (max-width: 1600px)
+{
+    #results-page-view-smartphones.view-mode-complete > div
+    {
+        font-size: 12px;
+    }
+}
+
+@media only screen and (max-width: 1500px)
+{
+    #results-page-view-options-rows
+    {
+        width: 100%;
+    }
+
+    #results-page-view-smartphones.view-mode-complete > div
+    {
+        grid-template-rows: repeat(5, auto);
+        grid-template-columns: repeat(3, auto);
+        grid-template-areas:
+        "smartphone-image-and-network-technology smartphone-brand-name smartphone-price-and-shop-container"
+        "smartphone-image-and-network-technology smartphone-model-name smartphone-price-and-shop-container"
+        "smartphone-image-and-network-technology smartphone-os-logo smartphone-price-and-shop-container"
+        "smartphone-image-and-network-technology smartphone-general-specs smartphone-price-and-shop-container"
+        "smartphone-categories-specs-wrapper smartphone-categories-specs-wrapper smartphone-categories-specs-wrapper";
+        justify-content: center;
+    }
+
+    #results-page-view-smartphones.view-mode-complete > div .smartphone-image-and-network-technology
+    {
+        justify-self: flex-end;
+    }
+
+    #results-page-view-smartphones.view-mode-complete > div .categories-specs-wrapper
+    {
+        margin: 2em 0 0 0;
+    }
+}
+
+#results-page-view-smartphones.view-mode-complete > div .smartphone-image-and-network-technology
+{
+    margin: 0 1rem 0 0;
+}
+
+#results-page-view-smartphones.view-mode-complete > div .smartphone-image-and-network-technology .smartphone-image
+{
+    max-width: 110px;
+
+    margin: 0 0 0.3rem 0;
+}
+
+#results-page-view-smartphones.view-mode-complete > div .brand-name
+{
+    align-self: flex-end;
+}
+
+#results-page-view-smartphones.view-mode-complete > div .summarized-specs
+{
+    display: none;
+}
+
+#results-page-view-smartphones.view-mode-complete > div .general-specs
+{
+    align-self: flex-start;
+}
+
+#results-page-view-smartphones.view-mode-complete > div .categories-specs-wrapper
+{
+    grid-area: smartphone-categories-specs-wrapper;
+    
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+#results-page-view-smartphones.view-mode-complete > div .categories-specs-wrapper > .column-container > div
+{
+    margin: 1em 0 0 0;
+}
+
+#results-page-view-smartphones.view-mode-complete > div .categories-specs-wrapper > .column-container > div:first-of-type
+{
+    margin: 0;
+}
+
+#results-page-view-smartphones.view-mode-complete > div .categories-specs-wrapper > div:first-of-type
+{
+    margin: 0;
+}
+
+#results-page-view-smartphones.view-mode-complete > div .categories-specs-wrapper > div
+{
+    margin: 0 0 0 2em;
+}
+
+#results-page-view-smartphones.view-mode-complete > div .categories-specs-wrapper .category-specs
+{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    font-size: 1em;
+}
+
+#results-page-view-smartphones.view-mode-complete > div .categories-specs-wrapper .category-specs .header
+{
+    width: 100%;
+}
+
+#results-page-view-smartphones.view-mode-complete > div .categories-specs-wrapper .category-specs .header > span
+{
+    background-color: var(--secondary-color);
+    color: #FFF;
+
+    margin: 0 0 0.3rem 0;
+    padding: 0.3rem 0.6rem;
+
+    font-size: 0.9em;
+    font-weight: 600;
+    text-align: center;
+
+    white-space: nowrap;
+}
+
+#results-page-view-smartphones.view-mode-complete > div .categories-specs-wrapper .category-specs .header hr
+{
+    width: 100%;
+    
+    border: none;
+    border-top: 2px solid var(--secondary-color);
+    border-top-style: dotted;
+
+    margin: 0 0 0 0.5rem;
+}
+
+#results-page-view-smartphones.view-mode-complete > div .categories-specs-wrapper .category-specs > span
+{
+    margin: 0.2rem 0 0 0;
+}
+
+#results-page-view-smartphones.view-mode-complete > div .categories-specs-wrapper .category-specs > span:first-of-type
+{
+    margin: 0;
+}
+
+@media only screen and (max-width: 1500px)
+{
+    #results-page-view-smartphones.view-mode-complete > div .categories-specs-wrapper
+    {
+        margin: 2em 0 0 0;
+    }
+    
+    #results-page-view-smartphones.view-mode-complete > div .categories-specs-wrapper > div:first-of-type
+    {
+        margin: 0;
+    }
+    
+    #results-page-view-smartphones.view-mode-complete > div .categories-specs-wrapper > .column-container > div
+    {
+        margin: 1em 0 0 0;
+    }
+}
+
+@media only screen and (max-width: 900px)
+{
+    #results-page-view-smartphones.view-mode-complete > div .categories-specs-wrapper
+    {
+        flex-direction: column;
+    }
+
+    #results-page-view-smartphones.view-mode-complete > div .categories-specs-wrapper > div
+    {
+        margin: 1em 0 0 0;
+    }
+
+    #results-page-view-smartphones.view-mode-complete > div .categories-specs-wrapper > .column-container > div,
+    #results-page-view-smartphones.view-mode-complete > div .categories-specs-wrapper > div
+    {
+        width: 100%;
+    }
+
+    #results-page-view-smartphones.view-mode-complete .price-and-shop-container
+    {
+        margin: 0 0 0 2em;
+    }
+}
+
+@media only screen and (max-width: 700px)
+{
+    #results-page-view-smartphones.view-mode-complete > div
+    {
+        grid-template-rows: repeat(6, auto);
+        grid-template-columns: repeat(2, auto);
+        grid-template-areas:
+            "smartphone-image-and-network-technology smartphone-brand-name"
+            "smartphone-image-and-network-technology smartphone-model-name"
+            "smartphone-image-and-network-technology smartphone-os-logo"
+            "smartphone-image-and-network-technology smartphone-general-specs"
+            "smartphone-categories-specs-wrapper smartphone-categories-specs-wrapper"
+            "smartphone-price-and-shop-container smartphone-price-and-shop-container";
+    }
+
+    #results-page-view-smartphones.view-mode-complete .price-and-shop-container
+    {
+        margin: 2em 0 0 0;
+    }
+}
+
+@media only screen and (max-width: 500px)
+{
+    #results-page-view-smartphones.view-mode-complete > div
+    {
+        font-size: 13px;
+        padding: 1.5rem;
+    }
+
+    #results-page-view-smartphones.view-mode-complete > div .smartphone-image-and-network-technology .smartphone-image
+    {
+        max-width: 80px;
+    }
+}
+
+@media only screen and (max-width: 1440px)
+{
+    #results-page-intro-container > div > img
+    {
+        height: 48px;
+    }
+
+    #results-page-intro-container > div > div h1
+    {
+        font-size: 1.8rem;
+    }
+}
+
+@media only screen and (max-width: 768px)
+{
+    #results-page-intro-container > p
+    {
+        width: 300px;
+        font-size: 0.9rem;
+    }
+
+    #results-page-intro-container-buttons-container
+    {
+        flex-direction: column;
+    }
+
+    .bp4y-button.small
+    {
+        width: 300px;
+
+        font-size: 0.8rem;
+    }
+
+    #results-page-intro-container-buttons-container.row-container button:first-of-type
+    {
+        margin: 0 0 0.7rem 0;
+    }
+
+    #results-page-view-options-rows hr
+    {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 600px)
+{
+    #results-page-intro-container > div > div
+    {
+        width: 240px;
+
+        margin: 0 0 1rem 0;
+    }
+
+    #results-page-intro-container > div > img
+    {
+        height: 32px;
+    }
+
+    #results-page-intro-container > div > div h1
+    {
+        font-size: 1.5rem;
+    }
+
+    #results-page-intro-container > div > div p
+    {
+        font-size: 0.7rem;
+    }
+
+    #results-page-view-options-rows > div > .row-container
+    {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #results-page-view-options-rows > div > div > button:first-of-type
+    {
+        margin: 0 0 0.5rem 0;
+    }
+}
+
+@media only screen and (max-width: 400px)
+{
+    #results-page-view-options-rows > div
+    {
+        padding: 0rem 1rem 0.8rem 1rem;
+    }
+
+    #results-page-view-options-rows > div > span,
+    #results-page-view-options-rows > div > div > button span
+    {
+        font-size: 12px;
+    }
+
+    #results-page-view-smartphones.view-mode-complete > div
+    {
+        font-size: 12px;
+    }
+}
+
+@media only screen and (max-width: 359px)
+{
+    #results-page-view-smartphones.view-mode-complete > div
+    {
+        grid-template-rows: repeat(7, auto);
+        grid-template-columns: auto;
+        grid-template-areas:
+            "smartphone-brand-name"
+            "smartphone-model-name"
+            "smartphone-image-and-network-technology"
+            "smartphone-os-logo"
+            "smartphone-general-specs"
+            "smartphone-categories-specs-wrapper"
+            "smartphone-price-and-shop-container";
+        justify-items: center;
+    }
+
+    #results-page-view-smartphones.view-mode-complete > div .smartphone-image-and-network-technology
+    {
+        justify-self: auto;
+    }
+
+    #results-page-view-smartphones.view-mode-complete > div .categories-specs-wrapper
+    {
+        margin: 1em 0 0 0;
+    }
+}
+
+/* End of Complete View Mode Styling */
+
+/* End of Results Page */
+
+@media only screen and (max-width: 1800px)
+{
+    /* Start of Main page */
+
+    #site-logo
+    {
+        height: 110px;
+        margin: 0 0 2.5rem 0;
+    }    
+    
+    #homepage-heading
+    {
+        font-size: 32px;
+    }
+
+    #homepage-smartphones-container
+    {
+        margin: 2.5rem 0;
+    }
+
+    #homepage-smartphones-container img
+    {
+        height: 160px;
+
+        margin: 0 0.7rem;
+    }
+
+    #homepage-cta-heading
+    {
+        font-size: 44px;
+    }
+
+    #homepage-cta-text
+    {
+        width: 610px;
+        
+        font-size: 16px;
+
+        margin: 1.3rem 0 1.8rem 0;
+    }
+
+    /* End of Main Page */
+
+    /* Start of Question Pages */
+
+    .question-number
+    {
+        font-size: 1rem;
+    }
+
+    .question-text
+    {
+        font-size: 3rem;
+    }
+
+    .question-text-small
+    {
+        font-size: 2rem;
+    }
+
+    #price-range-slider-container
+    {
+        width: 70vw;
+    }
+
+    #price-range-slider-value-label
+    {
+        font-size: 3rem;
+    }
+
+    .question-help
+    {
+        font-size: 1.3rem;
+
+        margin: 2rem 1rem;
+    }
+
+    .image-and-response-container img
+    {
+        width: 80%;
+    }
+
+    /* End of Question Pages */
+}
+
+@media only screen and (max-width: 1660px)
+{
+    body
+    {
+        padding: 2rem 0 0 0;
+    }
+
+    /* Start of Main page */
+
+    #site-logo
+    {
+        height: 100px;
+        margin: 0 0 2rem 0;
+    }    
+
+    #homepage-heading
+    {
+        font-size: 30px;
+    }
+
+    #homepage-smartphones-container
+    {
+        margin: 1.5rem 0;
+    }
+
+    #homepage-smartphones-container img
+    {
+        height: 160px;
+
+        margin: 0 0.7rem;
+    }
+
+    #homepage-cta-heading
+    {
+        font-size: 44px;
+    }
+
+    #homepage-cta-text
+    {
+        width: 610px;
+        
+        font-size: 16px;
+
+        margin: 1.3rem 0 1.8rem 0;
+    }
+
+    /* End of Main Page */
+
+    /* Start of Question Pages */
+
+    .image-and-response-container
+    {
+        margin: 0 3rem;
+    }
+
+    .image-and-response-container img
+    {
+        width: 60%;
+    }
+
+    /* End of Question Pages */    
+}
+
+@media only screen and (max-width: 1440px)
+{
+    /* Start of Main page */
+
+    #site-logo
+    {
+        height: 90px;
+        margin: 0 0 1.5rem 0;
+    }    
+    
+    #homepage-heading
+    {
+        font-size: 28px;
+    }
+
+    #homepage-smartphones-container img
+    {
+        height: 120px;
+
+        margin: 0 0.5rem;
+    }
+
+    #homepage-cta-heading
+    {
+        font-size: 40px;
+    }
+
+    #homepage-cta-text
+    {
+        width: 530px;
+
+        font-size: 14px;
+
+        margin: 1.1rem 0 1.6rem 0;
+    }
+
+    /* End of Main Page */
+
+    /* Start of Question Pages */
+
+    .question-number
+    {
+        font-size: 1rem;
+    }
+
+    .question-text
+    {
+        font-size: 2.5rem;
+    }
+    
+    .question-text-small
+    {
+        font-size: 1.5rem;
+    }
+
+    #price-range-slider-container
+    {
+        width: 90vw;
+    }
+
+    #price-range-slider-value-label
+    {
+        font-size: 2.5rem;
+    }
+
+    #price-range-slider
+    {
+        width: 70%;
+        height: 24px;
+        margin: 0 2rem;
+    }
+
+    #price-range-slider::-webkit-slider-thumb
+    {
+        width: 42px;
+        height: 42px;
+    }
+
+    #price-range-slider::-moz-range-thumb
+    {
+        width: 42px;
+        height: 42px;
+    }
+
+    #price-range-slider::-ms-thumb
+    {
+        width: 42px;
+        height: 42px;
+    }
+
+    .question-help
+    {
+        max-width: 600px;
+
+        font-size: 1rem;
+    }
+
+    .bp4y-button
+    {
+        font-size: 1.2em;
+    }
+
+    #bp4y-back-button
+    {
+        width: 48px;
+        height: 48px;
+
+        bottom: 48px;
+        left: 48px;
+    }
+
+    #bp4y-back-button img
+    {
+        width: 32px;
+        height: 32px;
+    }
+
+    /* End of Question Pages */
+}
+
+@media only screen and (max-width: 1024px)
+{
+    /* Start of Main page */
+
+    #site-logo
+    {
+        height: 70px;
+    }    
+    
+    #homepage-heading
+    {
+        font-size: 18px;
+    }
+
+    #homepage-smartphones-container img.hide-on-mobile
+    {
+        display: none;
+    }
+
+    #homepage-smartphones-container
+    {
+        margin: 2.5rem 0;
+    }
+
+    #homepage-smartphones-container img
+    {
+        height: 110px;
+
+        margin: 0 0.4rem;
+    }
+
+    #homepage-cta-heading
+    {
+        font-size: 26px;
+    }
+
+    #homepage-cta-text
+    {
+        margin: 1rem 0 1.5rem 0;
+    }
+
+    .bp4y-button
+    {
+        font-size: 1em;
+
+        padding: 0.8rem 2rem;
+    }
+
+    /* End of Main Page */
+
+    /* Start of Question Pages */
+
+    .question-container
+    {
+        margin: 0 2rem 2rem 2rem;
+    }
+
+    .question-text
+    {
+        font-size: 2rem;
+    }
+
+    .question-text-small
+    {
+        font-size: 1rem;
+    }
+
+    #price-range-slider-value-label
+    {
+        font-size: 2rem;
+    }
+
+    #price-range-slider
+    {
+        width: 60%;
+
+        margin: 0 1rem;
+    }
+
+    .image-and-response-container
+    {
+        margin: 0 2rem;
+    }
+
+    .image-and-response-container span
+    {
+        font-size: 16px;
+    }
+
+    .question-help.small
+    {
+        font-size: 0.9rem;
+    }
+
+    /* End of Question Pages */
+}
+
+@media only screen and (max-width: 800px)
+{
+    /* Start of Question Pages */
+
+    .question-container
+    {
+        border-left: 12px solid var(--primary-color);
+    }
+
+    .question-text
+    {
+        font-size: 1.5rem;
+    }
+
+    .price-range-slider-side-label
+    {
+        font-size: 0.8rem;
+    }
+    
+    .images-and-buttons-row-container.stack-on-mobile,
+    .buttons-row-container.stack-on-mobile
+    {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .image-and-response-container
+    {
+        margin: 0 0 4rem 0;
+    }
+    
+    .image-and-response-container span
+    {
+        font-size: 12px;
+    }
+
+    .image-and-response-container img
+    {
+        margin: 1.5rem 0 1rem 0;
+    }
+
+    .buttons-row-container button:not(:first-of-type)
+    {
+        margin: 2rem 0 0 0;
+    }
+
+    #bp4y-back-button
+    {
+        width: 40px;
+        height: 40px;
+
+        bottom: 16px;
+        left: 16px;
+    }
+
+    #bp4y-back-button img
+    {
+        width: 24px;
+        height: 24px;
+    }
+
+    /* End of Question Pages */
+}
+
+@media only screen and (max-width: 600px)
+{
+    body
+    {
+        padding: 2rem 0 0 0;
+    }
+
+    /* Start of Main page */
+
+    #homepage-heading
+    {
+        font-size: 18px;
+    }
+
+    #homepage-cta-text
+    {
+        width: 340px;
+    }
+
+    /* End of Main Page */
+
+    /* Start of Question Pages */
+
+    .question-text
+    {
+        font-size: 1.2rem;
+    }
+
+    #price-range-slider
+    {
+        width: 90%;
+        height: 16px;
+    }
+
+    #price-range-slider-value-label
+    {
+        font-size: 2rem;
+    }
+
+    #price-range-slider::-webkit-slider-thumb
+    {
+        width: 26px;
+        height: 26px;
+    }
+
+    #price-range-slider::-moz-range-thumb
+    {
+        width: 26px;
+        height: 26px;
+    }
+    
+    #price-range-slider::-ms-thumb
+    {
+        width: 26px;
+        height: 26px;
+    }
+
+    .image-and-response-container img
+    {
+        width: 40%;
+
+        margin: 1rem 0 1rem 0;
+    }
+
+    /* End of Question Pages */
+}
+
+@media only screen and (max-width: 360px)
+{
+    body
+    {
+        padding: 1rem 0;
+    }
+
+    /* Start of Main page */
+
+    #homepage-heading
+    {
+        font-size: 16px;
+    }
+
+    #homepage-smartphones-container
+    {
+        margin: 1.5rem 0;
+    }
+
+    #homepage-smartphones-container img
+    {
+        height: 90px;
+
+        margin: 0 0.3rem;
+    }
+
+    #homepage-cta-heading
+    {
+        font-size: 22px;
+    }
+
+    #homepage-cta-text
+    {
+        width: 280px;
+
+        margin: 0.8rem 0 1.3rem 0;
+    }
+
+    /* End of Main Page */
 }

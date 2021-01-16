@@ -1,0 +1,5 @@
+<svg id="check_circle-24px" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <path id="Tracciato_51" data-name="Tracciato 51" d="M0,0H64V64H0Z" fill="none"/>
+  <circle id="Ellisse_10" data-name="Ellisse 10" cx="24.5" cy="24.5" r="24.5" transform="translate(8 8)" fill="#2d3039"/>
+  <path id="Tracciato_52" data-name="Tracciato 52" d="M28.667,2A26.667,26.667,0,1,0,55.333,28.667,26.676,26.676,0,0,0,28.667,2ZM23.333,42,10,28.667l3.76-3.76,9.573,9.547,20.24-20.24L47.333,18Z" transform="translate(3.333 3.333)" fill="#f6d04e"/>
+</svg>

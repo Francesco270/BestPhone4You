@@ -19,7 +19,6 @@ services:
       mariadb:latest
     environment:
       MYSQL_ROOT_PASSWORD: docker
-      BP4Y_DB_NAME: bp4ydb
     volumes:
       - "./database-definitions/:/docker-entrypoint-initdb.d"
     ports:
