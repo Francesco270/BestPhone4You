@@ -48,7 +48,7 @@
         ($smartphones_with_64_GB_memory_are_present && $smartphones_with_256_GB_and_above_memory_are_present)
     )
     {
-        $question = new Question(__FILE__, "Quale vuoi che sia la dimensione della memoria interna?");
+        $question = new Question(__FILE__, $questions_and_answers[MEMORY_CAPACITY_QUESTION_ORDER_NUMBER]["question_text"]);
     
     }
     
@@ -61,13 +61,13 @@
 </div>
 <div class="buttons-row-container stack-on-mobile">
     <?php if($smartphones_with_64_GB_memory_are_present): ?>
-        <button class="bp4y-response-confirm-button bp4y-button" type="button" data-response-value="1">64 GB</button>
+        <button class="bp4y-response-confirm-button bp4y-button" type="button" data-response-value="1"><?php echo $questions_and_answers[MEMORY_CAPACITY_QUESTION_ORDER_NUMBER]["question_responses"][1]; ?></button>
     <?php endif; ?>
     <?php if($smartphones_with_128_GB_memory_are_present): ?>
-        <button class="bp4y-response-confirm-button bp4y-button" type="button" data-response-value="2">128 GB</button>
+        <button class="bp4y-response-confirm-button bp4y-button" type="button" data-response-value="2"><?php echo $questions_and_answers[MEMORY_CAPACITY_QUESTION_ORDER_NUMBER]["question_responses"][2]; ?></button>
     <?php endif; ?>
     <?php if($smartphones_with_256_GB_and_above_memory_are_present): ?>
-        <button class="bp4y-response-confirm-button bp4y-button" type="button" data-response-value="3">256 GB E OLTRE</button>
+        <button class="bp4y-response-confirm-button bp4y-button" type="button" data-response-value="3"><?php echo $questions_and_answers[MEMORY_CAPACITY_QUESTION_ORDER_NUMBER]["question_responses"][3]; ?></button>
     <?php endif; ?>
 </div>
 <span class="question-help small">

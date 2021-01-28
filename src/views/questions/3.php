@@ -48,7 +48,7 @@
         ($smartphones_with_small_display_are_present && $smartphones_with_large_display_are_present)
     )
     {
-        $question = new Question(__FILE__, "Quale deve essere la dimensione dello schermo?");
+        $question = new Question(__FILE__, $questions_and_answers[DISPLAY_DIMENSION_QUESTION_ORDER_NUMBER]["question_text"]);
     }
 
     if(isset($question)):
@@ -63,21 +63,21 @@
         <div class="image-and-response-container">
             <span>Dai 4.7" ai 5.5"</span>
             <img id="smartphone-display-small-image" src="/assets/images/smartphone-display-diagonal.png" alt="Schermo piccolo">
-            <button class="bp4y-response-confirm-button bp4y-button" type="button" data-response-value="1">PICCOLA</button>
+            <button class="bp4y-response-confirm-button bp4y-button" type="button" data-response-value="1"><?php echo $questions_and_answers[DISPLAY_DIMENSION_QUESTION_ORDER_NUMBER]["question_responses"][1]; ?></button>
         </div>
     <?php endif; ?>
     <?php if($smartphones_with_medium_display_are_present): ?>
         <div class="image-and-response-container">
             <span>Dai 5.6" ai 6.2"</span>
             <img id="smartphone-display-medium-image" src="/assets/images/smartphone-display-diagonal.png" alt="Schermo medio">
-            <button class="bp4y-response-confirm-button bp4y-button" type="button" data-response-value="2">MEDIA</button>
+            <button class="bp4y-response-confirm-button bp4y-button" type="button" data-response-value="2"><?php echo $questions_and_answers[DISPLAY_DIMENSION_QUESTION_ORDER_NUMBER]["question_responses"][2]; ?></button>
         </div>
     <?php endif; ?>
     <?php if($smartphones_with_large_display_are_present): ?>
         <div class="image-and-response-container">
             <span>Dai 6.3" ai 7.6"</span>
             <img id="smartphone-display-large-image" src="/assets/images/smartphone-display-diagonal.png" alt="Schermo grande">
-            <button class="bp4y-response-confirm-button bp4y-button" type="button" data-response-value="3">GRANDE</button>
+            <button class="bp4y-response-confirm-button bp4y-button" type="button" data-response-value="3"><?php echo $questions_and_answers[DISPLAY_DIMENSION_QUESTION_ORDER_NUMBER]["question_responses"][3]; ?></button>
         </div>
     <?php endif; ?>
 </div>

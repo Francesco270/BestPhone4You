@@ -36,8 +36,8 @@
     <span class="question-text-small"><?php echo $question->get_question_text(); ?></span>
 </div>
 <div class="buttons-row-container stack-on-mobile">
-    <button class="bp4y-response-confirm-button bp4y-button" type="button" data-response-value="1">SÌ</button>
-    <button class="bp4y-response-confirm-button bp4y-button" type="button" data-response-value="0">NON MI INTERESSA</button>
+    <button class="bp4y-response-confirm-button bp4y-button" type="button" data-response-value="1"><?php echo $questions_and_answers[EXPANDABLE_MEMORY_QUESTION_ORDER_NUMBER]["question_responses"][1]; ?></button>
+    <button class="bp4y-response-confirm-button bp4y-button" type="button" data-response-value="0"><?php echo $questions_and_answers[EXPANDABLE_MEMORY_QUESTION_ORDER_NUMBER]["question_responses"][0]; ?></button>
 </div>
 <span class="question-help small">
     Uno Smartphone con la memoria espandibile permette

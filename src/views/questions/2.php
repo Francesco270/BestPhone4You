@@ -15,7 +15,7 @@
     // Display the question only if there is more than one distinct OS 
     if($OS_count > 1)
     {
-        $question = new Question(__FILE__, "Quale Sistema Operativo vorresti usare?");
+        $question = new Question(__FILE__, $questions_and_answers[OS_QUESTION_ORDER_NUMBER]["question_text"]);
 
         $OS_infos_sql_query = "SELECT idSistemaOperativo, nomeSistemaOperativo, percorsoImmagineLogoSistemaOperativo";
         $OS_infos_sql_query .= " FROM SISTEMI_OPERATIVI;";

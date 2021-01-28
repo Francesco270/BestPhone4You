@@ -8,40 +8,54 @@ session_start([
     "cookie_lifetime" => 3600
 ]);
 
+if(!isset($is_a_shared_results_page_request))
+{
+    $is_a_shared_results_page_request = false;
+}
+
 if(
-    isset($_SESSION["csrf_token"]) &&
-    isset($_POST["token"]) &&
-    isset($_POST["action"]) &&
-    $_POST["token"] == $_SESSION["csrf_token"] &&
-    in_array($_POST["action"], array("start_procedure", "resume_procedure", "next_question", "previous_question"))
+    (
+        isset($_SESSION["csrf_token"]) &&
+        isset($_POST["token"]) &&
+        isset($_POST["action"]) &&
+        $_POST["token"] == $_SESSION["csrf_token"] &&
+        in_array($_POST["action"], array("start_procedure", "resume_procedure", "next_question", "previous_question"))
+    ) || $is_a_shared_results_page_request
 )
 {
-    // The AJAX request is valid
+    // The AJAX request is valid, or this controller has been included to handle the logic for displaying a shared results page
 
-    define("APPNAME", "BESTPHONE4YOU");
-    define("QUESTION_TEMPLATE_FILENAME_MODEL", "./../views/questions/%d.php");
-    require("./../helpers/question_order_number_definitions.php");
+    if(!defined("APPNAME")) { define("APPNAME", "BESTPHONE4YOU"); }
+    if(!defined("BP4Y_APP_ROOT_PATH")) { define("BP4Y_APP_ROOT_PATH", $_SERVER["DOCUMENT_ROOT"] . "/"); }
 
-    class Question
+    require(BP4Y_APP_ROOT_PATH . "helpers/question_order_number_definitions.php");
+    require(BP4Y_APP_ROOT_PATH . "models/questions_and_answers.php");
+
+    if(! $is_a_shared_results_page_request)
     {
-        protected int $order_number;
-        protected string $text;
+        define("QUESTION_TEMPLATE_FILENAME_MODEL", BP4Y_APP_ROOT_PATH . "views/questions/%d.php");
 
-        public function __construct(string $question_template_file_path, string $text)
+        class Question
         {
-            // Get the question order number from the question template file name
-            $this->order_number = sscanf(basename($question_template_file_path, ".php"), basename(QUESTION_TEMPLATE_FILENAME_MODEL, ".php"))[0];
-            $this->text = $text;
-
-            if( in_array($_POST["action"], array("start_procedure", "next_question")) )
+            protected int $order_number;
+            protected string $text;
+    
+            public function __construct(string $question_template_file_path, string $text)
             {
-                $_SESSION["questions_and_answers"][$this->order_number] = 0; // Initialize the question in the session variable
+                // Get the question order number from the question template file name
+                $this->order_number = sscanf(basename($question_template_file_path, ".php"), basename(QUESTION_TEMPLATE_FILENAME_MODEL, ".php"))[0];
+                $this->text = $text;
+    
+                if( in_array($_POST["action"], array("start_procedure", "next_question")) )
+                {
+                    $_SESSION["questions_and_answers"][$this->order_number] = 0; // Initialize the question in the session variable
+                }
             }
-        }
-
-        public function get_question_text()
-        {
-            return $this->text;
+    
+            public function get_question_text()
+            {
+                return $this->text;
+            }
         }
     }
 
@@ -66,7 +80,7 @@ if(
                 $sql_query .= " AND";
             }
 
-            require("./../helpers/queries-conditions/" . $answered_questions_ids[$i] . ".php");
+            require(BP4Y_APP_ROOT_PATH . "helpers/queries-conditions/" . $answered_questions_ids[$i] . ".php");
         }
 
         if(isset($after_conditions))
@@ -86,27 +100,13 @@ if(
                 break;
             }
 
-            require("./../helpers/queries-binders/" . $answered_questions_ids[$i] . ".php");
+            require(BP4Y_APP_ROOT_PATH . "helpers/queries-binders/" . $answered_questions_ids[$i] . ".php");
         }
 
         $statement->execute();
     }
 
-    require("./../../credentials/database.php");
-    try
-    {
-        $connection = new PDO("mysql:host=" . BP4Y_DB_HOST . ";dbname=" . BP4Y_DB_NAME . ";charset=utf8",
-                                BP4Y_DB_USERNAME,
-                                BP4Y_DB_PASSWORD,
-                                [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-                            );
-        $connection->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-    }
-    catch(PDOException $e) 
-    {
-        // DB Connection has failed
-        exit;
-    }
+    require_once(BP4Y_APP_ROOT_PATH . "helpers/db_connection.php");
 
     if($_POST["action"] == "start_procedure")
     {
@@ -126,31 +126,38 @@ if(
 
         require($template_filename);
     }
-    elseif($_POST["action"] == "next_question")
+    elseif($_POST["action"] == "next_question" || $is_a_shared_results_page_request)
     {
-        $_SESSION["last_action"] = "next_question";
-
-        $current_question_order_number = array_keys($_SESSION["questions_and_answers"])[count($_SESSION["questions_and_answers"]) - 1];
-
-        $_SESSION["questions_and_answers"][$current_question_order_number] = $_POST["response_value"];
-
-        $next_question_order_number = $current_question_order_number + 1;
-
-        if( file_exists(sprintf(QUESTION_TEMPLATE_FILENAME_MODEL, $next_question_order_number)) )
+        if(! $is_a_shared_results_page_request)
         {
-            while( !isset($question) && file_exists(sprintf(QUESTION_TEMPLATE_FILENAME_MODEL, $next_question_order_number)) )
+            $_SESSION["last_action"] = "next_question";
+    
+            $current_question_order_number = array_keys($_SESSION["questions_and_answers"])[count($_SESSION["questions_and_answers"]) - 1];
+    
+            $_SESSION["questions_and_answers"][$current_question_order_number] = $_POST["response_value"];
+    
+            $next_question_order_number = $current_question_order_number + 1;
+    
+            if( file_exists(sprintf(QUESTION_TEMPLATE_FILENAME_MODEL, $next_question_order_number)) )
             {
-                require(sprintf(QUESTION_TEMPLATE_FILENAME_MODEL, $next_question_order_number));
+                while( !isset($question) && file_exists(sprintf(QUESTION_TEMPLATE_FILENAME_MODEL, $next_question_order_number)) )
+                {
+                    require(sprintf(QUESTION_TEMPLATE_FILENAME_MODEL, $next_question_order_number));
+    
+                    $next_question_order_number++;
+                }
+            }
 
-                $next_question_order_number++;
+            if( !isset($question) && !file_exists(sprintf(QUESTION_TEMPLATE_FILENAME_MODEL, $next_question_order_number)) )
+            {
+                $no_more_questions_to_ask = true;
             }
         }
 
-        if( !isset($question) && !file_exists(sprintf(QUESTION_TEMPLATE_FILENAME_MODEL, $next_question_order_number)) )
+        // If the request is for a shared results page or there are no more questions to ask. then display the results page
+        if($is_a_shared_results_page_request || (isset($no_more_questions_to_ask) && $no_more_questions_to_ask))
         {
-            // There are no more questions to ask.
-            // Hence, display the results page
-            require("./../views/results_page.php");
+            require(BP4Y_APP_ROOT_PATH . "views/results_page.php");
         }
     }
     elseif($_POST["action"] == "previous_question")

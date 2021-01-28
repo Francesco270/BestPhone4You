@@ -4,7 +4,7 @@
         exit;
     }
 
-    $question = new Question(__FILE__, "Quanto vorresti spendere, al massimo?");
+    $question = new Question(__FILE__, $questions_and_answers[BUDGET_QUESTION_ORDER_NUMBER]["question_text"]);
 
     $statement = $connection->prepare("SELECT MIN(prezzo) FROM PREZZI_SMARTPHONES_NEGOZI;");
     $statement->execute();
