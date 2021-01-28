@@ -53,6 +53,8 @@ body
     flex-direction: column;
     align-items: center;
 
+    padding: 0 0 2rem 0;
+
     opacity: 1;
 
     transition: opacity 1s cubic-bezier(0.4, 0.4, 0.1, 1);
@@ -98,6 +100,7 @@ body
 .bp4y-button
 {
     min-width: 180px;
+    box-sizing: border-box;
 
     background-color: var(--primary-color);
     color: #000;
@@ -146,7 +149,7 @@ body
     width: 100%;
     height: 100%;
 
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
 
@@ -156,17 +159,32 @@ body
 
     background-color: rgba(0,0,0,0.7);
 
-    transition: background-color 0.4s;
+    /* transition: background-color 0.4s, opacity 0.4s; */
+    transition: background-color 0.2s, opacity 0.2s;
+}
+
+#screen-fade-container.hidden
+{
+    opacity: 0;
+    pointer-events: none;
 }
 
 #screen-fade-container .modal-dialog-box
 {
     background-color: #fff;
     border-radius: 16px;
-    margin: 0 2rem;
+    /* margin: 0 2rem; */
+    margin: 0 1rem;
     padding: 2rem 4rem;
 
     font-size: 10px;
+}
+
+#screen-fade-container .modal-dialog-box.show-questions-recap #questions-recap-container,
+#screen-fade-container .modal-dialog-box.show-all-smartphone-shops-prices #all-smartphone-shops-prices-container,
+#screen-fade-container .modal-dialog-box.show-feedback-panel #feedback-panel-container
+{
+    display: block;
 }
 
 @media only screen and (max-width: 1440px)
@@ -186,7 +204,7 @@ body
 }
 
 #screen-fade-container .modal-dialog-box .heading,
-#screen-fade-container .modal-dialog-box .prompt
+#screen-fade-container .modal-dialog-box .body
 {
     display: block;
 
@@ -199,9 +217,11 @@ body
     font-weight: 700;
 }
 
-#screen-fade-container .modal-dialog-box .prompt
+#screen-fade-container .modal-dialog-box .body
 {
     max-width: 580px;
+    max-height: 50vh;
+    overflow-y: auto;
 
     font-size: 1rem;
     margin: 1rem 0 0 0;
@@ -234,10 +254,10 @@ body
         font-size: 1.5rem;
     }
 
-    #screen-fade-container .modal-dialog-box .prompt
+    /* #screen-fade-container .modal-dialog-box .body
     {
         max-width: 580px;
-    }
+    } */
 
     #screen-fade-container .modal-dialog-box .buttons-container
     {
@@ -258,7 +278,7 @@ body
         padding: 2rem 1rem;
     }
 
-    #screen-fade-container .modal-dialog-box .prompt
+    #screen-fade-container .modal-dialog-box .body
     {
         font-size: 14px;
     }
@@ -537,7 +557,7 @@ body
     font-size: 1rem;
     text-align: center;
 
-    margin: 0;
+    margin: 0 1em;
 }
 
 .bp4y-button.small
@@ -577,6 +597,13 @@ body
     margin: 0 10px 0 0;
 }
 
+.bp4y-button.small img,
+.bp4y-button.small svg,
+.bp4y-button.small span
+{
+    pointer-events: none;
+}
+
 .bp4y-button.small.secondary
 {
     background-color: #FFF;
@@ -608,6 +635,7 @@ body
 #results-page-view-options-rows
 {
     width: 80vw;
+    /* width: 100%; */
     justify-content: flex-start;
 
     margin: 2rem 0 0 0;
@@ -618,6 +646,15 @@ body
     #results-page-view-options-rows
     {
         width: 90vw;
+        /* width: 100%; */
+    }
+}
+
+@media only screen and (max-width: 1500px)
+{
+    #results-page-view-options-rows
+    {
+        width: 100%;
     }
 }
 
@@ -658,7 +695,7 @@ body
     -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
     border: none;
 
-    font-family: 'Poppins';
+    font-family: 'Poppins', sans-serif;
 
     cursor: pointer;
 }
@@ -699,7 +736,7 @@ body
 
 #results-page-view-options-rows > div > div > button span
 {
-    font-family: 'Poppins';
+    font-family: 'Poppins', sans-serif;
     font-size: 14px;
     font-weight: 600;
 
@@ -722,29 +759,33 @@ body
     width: 100%;
 
     border: none;
-    border-top: 2px solid var(--secondary-color);
-    border-top-style: dotted;
+    border-top: 2px dotted var(--secondary-color);
 
     margin: 0 0 0 0.5rem;
+}
+
+@media only screen and (max-width: 1024px)
+{
+    #results-page-view-options-rows hr
+    {
+        display: none;
+    }
 }
 
 #results-page-view-smartphones
 {
     width: 100%;
 
-    margin: 1rem 0 0 0;
+    margin: 2rem 0 4em 0;
 }
 
-#results-page-view-smartphones > div
+#results-page-view-smartphones .smartphone-card
 {
     border: 1px solid #E6E6E6;
     border-radius: 4px;
-
-    margin: 0 0 3rem 0;
-    padding: 1.5rem 1rem;
 }
 
-#results-page-view-smartphones > div .brand-name
+#results-page-view-smartphones .smartphone-card .brand-name
 {
     grid-area: smartphone-brand-name;
 
@@ -756,28 +797,27 @@ body
     color: #575961;
 }
 
-#results-page-view-smartphones > div .model-name
+#results-page-view-smartphones .smartphone-card .model-name
 {
     grid-area: smartphone-model-name;
     
-    /* font-size: 1.5em; */
-    font-size: 1.7em;
+    font-size: 1.5em;
     font-weight: 600;
 }
 
-#results-page-view-smartphones > div .smartphone-image-and-network-technology
+#results-page-view-smartphones .smartphone-card .smartphone-image-and-network-technology
 {
     grid-area: smartphone-image-and-network-technology;
 }
 
-#results-page-view-smartphones > div .os-logo
+#results-page-view-smartphones .smartphone-card .os-logo
 {
     grid-area: smartphone-os-logo;
 
     max-width: 130px;
 }
 
-#results-page-view-smartphones > div .general-specs
+#results-page-view-smartphones .smartphone-card .general-specs
 {
     grid-area: smartphone-general-specs;
 
@@ -790,35 +830,55 @@ body
     margin: 1rem 0 0 0;
 }
 
-#results-page-view-smartphones > div .summarized-specs
+#results-page-view-smartphones .smartphone-card .summarized-specs
 {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     text-align: center;
 
     margin: 0.7rem 0;
 }
 
-#results-page-view-smartphones > div .price
+@media only screen and (max-width: 1880px)
+{
+    #results-page-view-smartphones .smartphone-card .summarized-specs
+    {
+        font-size: 0.8rem;
+    }
+}
+
+@media only screen and (max-width: 1500px)
+{
+    #results-page-view-smartphones .smartphone-card .summarized-specs
+    {
+        font-size: 0.75rem;
+    }
+}
+
+#results-page-view-smartphones .smartphone-card .price-and-shop-container
+{
+    grid-area: smartphone-price-and-shop-container;
+}
+
+#results-page-view-smartphones .smartphone-card .price-and-shop-container .price-text
 {
     font-size: 2.3em;
     font-weight: 700;
 }
 
-#results-page-view-smartphones > div .shop-image
+#results-page-view-smartphones .smartphone-card .price-and-shop-container .shop-image
 {
     max-width: 90px;
 }
 
-#results-page-view-smartphones > div a
+#results-page-view-smartphones .smartphone-card .price-and-shop-container a
 {
     margin: 0.7rem 0 0 0;
 
     text-decoration: none;
 }
 
-#results-page-view-smartphones > div > div > a .goto-shop-button
+#results-page-view-smartphones .smartphone-card .price-and-shop-container a .goto-shop-button
 {
-    font-family: 'Poppins';
     font-size: 1em;
     font-weight: 700;
 
@@ -833,45 +893,129 @@ body
     cursor: pointer;
 }
 
-#results-page-view-smartphones > div > div > a .goto-shop-button img
+#results-page-view-smartphones .smartphone-card .price-and-shop-container a .goto-shop-button img
 {
     margin: 0 0.5rem 0 0;
 }
 
+#results-page-view-smartphones .smartphone-card .price-and-shop-container .view-all-shops-prices-button
+{
+    background-color: #FFF;
+    color: #079CFF;
+    
+    border: none;
+    padding: 0;
+    
+    font-family: 'Poppins', sans-serif;
+    font-size: 1em;
+    font-weight: 600;
+    
+    cursor: pointer;
+}
+
 /* Start of Compact View Mode Styling */
 
-#results-page-view-smartphones.view-mode-compact > div
+#results-page-view-smartphones.view-mode-compact
 {
-    /* min-height: 570px; */
-    /* min-width: 400px; */
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    gap: 2em 3em;
+
+    align-items: flex-start;
+    justify-content: center;
+}
+
+@media only screen and (max-width: 1500px)
+{
+    #results-page-view-smartphones.view-mode-compact
+    {
+        display: grid;
+        grid-template-columns: repeat(3, auto);
+        gap: 2em;
+    }
+}
+
+@media only screen and (max-width: 1100px)
+{
+    #results-page-view-smartphones.view-mode-compact
+    {
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+    }
+}
+
+@media only screen and (max-width: 700px)
+{
+    #results-page-view-smartphones.view-mode-compact
+    {
+        display: grid;
+        grid-template-columns: auto;
+    }
+}
+
+#results-page-view-smartphones.view-mode-compact .smartphone-card
+{
+    /* min-height: 600px; */
+    min-width: 340px;
+    box-sizing: border-box;
 
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    /* justify-content: space-between; */
+
+    /* margin: 0 2rem 3rem 0; */
+    padding: 1.5rem 1rem;
 }
 
-#results-page-view-smartphones.view-mode-compact > div .model-name
+@media only screen and (max-width: 1880px)
 {
-    margin: 0.8rem 1.6rem;
+    #results-page-view-smartphones.view-mode-compact .smartphone-card
+    {
+        min-width: 320px;
+    }
 }
 
-#results-page-view-smartphones.view-mode-compact > div .smartphone-image-and-network-technology
+@media only screen and (max-width: 1500px)
+{
+    #results-page-view-smartphones.view-mode-compact .smartphone-card
+    {
+        min-width: 310px;
+    }
+}
+
+@media only screen and (max-width: 359px)
+{
+    #results-page-view-smartphones.view-mode-compact .smartphone-card
+    {
+        min-width: 300px;
+
+        padding: 1.5rem 0.8rem;
+    }
+}
+
+#results-page-view-smartphones.view-mode-compact .smartphone-card .model-name
+{
+    margin: 0.8rem 0;
+}
+
+#results-page-view-smartphones.view-mode-compact .smartphone-card .smartphone-image-and-network-technology
 {
     margin: 0 0 0.3rem 0;
 }
 
-#results-page-view-smartphones.view-mode-compact > div .smartphone-image-and-network-technology .smartphone-image
+#results-page-view-smartphones.view-mode-compact .smartphone-card .smartphone-image-and-network-technology .smartphone-image
 {
-    max-width: 140px;
+    /* max-width: 140px; */
+    max-height: 150px;
 }
 
-#results-page-view-smartphones.view-mode-compact > div .general-specs
+#results-page-view-smartphones.view-mode-compact .smartphone-card .general-specs
 {
     display: none;
 }
 
-#results-page-view-smartphones.view-mode-compact > div .category-specs
+#results-page-view-smartphones.view-mode-compact .smartphone-card .category-specs
 {
     display: none;
 }
@@ -883,9 +1027,10 @@ body
 #results-page-view-smartphones.view-mode-complete
 {
     flex-direction: column;
+    gap: 2em 0;
 }
 
-#results-page-view-smartphones.view-mode-complete > div
+#results-page-view-smartphones.view-mode-complete .smartphone-card
 {
     width: 100%;
     box-sizing: border-box;
@@ -902,12 +1047,13 @@ body
     align-items: center;
 
     font-size: 14px;
+    /* margin: 0 0 2rem 0; */
     padding: 1.5rem 2.5rem;
 }
 
 @media only screen and (max-width: 1700px)
 {
-    #results-page-view-smartphones.view-mode-complete > div
+    #results-page-view-smartphones.view-mode-complete .smartphone-card
     {
         font-size: 13px;
     }
@@ -915,7 +1061,7 @@ body
 
 @media only screen and (max-width: 1600px)
 {
-    #results-page-view-smartphones.view-mode-complete > div
+    #results-page-view-smartphones.view-mode-complete .smartphone-card
     {
         font-size: 12px;
     }
@@ -923,12 +1069,7 @@ body
 
 @media only screen and (max-width: 1500px)
 {
-    #results-page-view-options-rows
-    {
-        width: 100%;
-    }
-
-    #results-page-view-smartphones.view-mode-complete > div
+    #results-page-view-smartphones.view-mode-complete .smartphone-card
     {
         grid-template-rows: repeat(5, auto);
         grid-template-columns: repeat(3, auto);
@@ -941,45 +1082,46 @@ body
         justify-content: center;
     }
 
-    #results-page-view-smartphones.view-mode-complete > div .smartphone-image-and-network-technology
+    #results-page-view-smartphones.view-mode-complete .smartphone-card .smartphone-image-and-network-technology
     {
         justify-self: flex-end;
     }
 
-    #results-page-view-smartphones.view-mode-complete > div .categories-specs-wrapper
+    #results-page-view-smartphones.view-mode-complete .smartphone-card .categories-specs-wrapper
     {
         margin: 2em 0 0 0;
     }
 }
 
-#results-page-view-smartphones.view-mode-complete > div .smartphone-image-and-network-technology
+#results-page-view-smartphones.view-mode-complete .smartphone-card .smartphone-image-and-network-technology
 {
     margin: 0 1rem 0 0;
 }
 
-#results-page-view-smartphones.view-mode-complete > div .smartphone-image-and-network-technology .smartphone-image
+#results-page-view-smartphones.view-mode-complete .smartphone-card .smartphone-image-and-network-technology .smartphone-image
 {
-    max-width: 110px;
+    /* max-width: 110px; */
+    max-height: 140px;
 
     margin: 0 0 0.3rem 0;
 }
 
-#results-page-view-smartphones.view-mode-complete > div .brand-name
+#results-page-view-smartphones.view-mode-complete .smartphone-card .brand-name
 {
     align-self: flex-end;
 }
 
-#results-page-view-smartphones.view-mode-complete > div .summarized-specs
+#results-page-view-smartphones.view-mode-complete .smartphone-card .summarized-specs
 {
     display: none;
 }
 
-#results-page-view-smartphones.view-mode-complete > div .general-specs
+#results-page-view-smartphones.view-mode-complete .smartphone-card .general-specs
 {
     align-self: flex-start;
 }
 
-#results-page-view-smartphones.view-mode-complete > div .categories-specs-wrapper
+#results-page-view-smartphones.view-mode-complete .smartphone-card .categories-specs-wrapper
 {
     grid-area: smartphone-categories-specs-wrapper;
     
@@ -988,27 +1130,27 @@ body
     align-items: flex-start;
 }
 
-#results-page-view-smartphones.view-mode-complete > div .categories-specs-wrapper > .column-container > div
+#results-page-view-smartphones.view-mode-complete .smartphone-card .categories-specs-wrapper > .column-container > div
 {
     margin: 1em 0 0 0;
 }
 
-#results-page-view-smartphones.view-mode-complete > div .categories-specs-wrapper > .column-container > div:first-of-type
+#results-page-view-smartphones.view-mode-complete .smartphone-card .categories-specs-wrapper > .column-container > div:first-of-type
 {
     margin: 0;
 }
 
-#results-page-view-smartphones.view-mode-complete > div .categories-specs-wrapper > div:first-of-type
+#results-page-view-smartphones.view-mode-complete .smartphone-card .categories-specs-wrapper > div:first-of-type
 {
     margin: 0;
 }
 
-#results-page-view-smartphones.view-mode-complete > div .categories-specs-wrapper > div
+#results-page-view-smartphones.view-mode-complete .smartphone-card .categories-specs-wrapper > div
 {
     margin: 0 0 0 2em;
 }
 
-#results-page-view-smartphones.view-mode-complete > div .categories-specs-wrapper .category-specs
+#results-page-view-smartphones.view-mode-complete .smartphone-card .categories-specs-wrapper .category-specs
 {
     display: flex;
     flex-direction: column;
@@ -1017,12 +1159,12 @@ body
     font-size: 1em;
 }
 
-#results-page-view-smartphones.view-mode-complete > div .categories-specs-wrapper .category-specs .header
+#results-page-view-smartphones.view-mode-complete .smartphone-card .categories-specs-wrapper .category-specs .header
 {
     width: 100%;
 }
 
-#results-page-view-smartphones.view-mode-complete > div .categories-specs-wrapper .category-specs .header > span
+#results-page-view-smartphones.view-mode-complete .smartphone-card .categories-specs-wrapper .category-specs .header > span
 {
     background-color: var(--secondary-color);
     color: #FFF;
@@ -1037,40 +1179,39 @@ body
     white-space: nowrap;
 }
 
-#results-page-view-smartphones.view-mode-complete > div .categories-specs-wrapper .category-specs .header hr
+#results-page-view-smartphones.view-mode-complete .smartphone-card .categories-specs-wrapper .category-specs .header hr
 {
     width: 100%;
     
     border: none;
-    border-top: 2px solid var(--secondary-color);
-    border-top-style: dotted;
+    border-top: 2px dotted var(--secondary-color);
 
     margin: 0 0 0 0.5rem;
 }
 
-#results-page-view-smartphones.view-mode-complete > div .categories-specs-wrapper .category-specs > span
+#results-page-view-smartphones.view-mode-complete .smartphone-card .categories-specs-wrapper .category-specs > span
 {
     margin: 0.2rem 0 0 0;
 }
 
-#results-page-view-smartphones.view-mode-complete > div .categories-specs-wrapper .category-specs > span:first-of-type
+#results-page-view-smartphones.view-mode-complete .smartphone-card .categories-specs-wrapper .category-specs > span:first-of-type
 {
     margin: 0;
 }
 
 @media only screen and (max-width: 1500px)
 {
-    #results-page-view-smartphones.view-mode-complete > div .categories-specs-wrapper
+    #results-page-view-smartphones.view-mode-complete .smartphone-card .categories-specs-wrapper
     {
         margin: 2em 0 0 0;
     }
     
-    #results-page-view-smartphones.view-mode-complete > div .categories-specs-wrapper > div:first-of-type
+    #results-page-view-smartphones.view-mode-complete .smartphone-card .categories-specs-wrapper > div:first-of-type
     {
         margin: 0;
     }
     
-    #results-page-view-smartphones.view-mode-complete > div .categories-specs-wrapper > .column-container > div
+    #results-page-view-smartphones.view-mode-complete .smartphone-card .categories-specs-wrapper > .column-container > div
     {
         margin: 1em 0 0 0;
     }
@@ -1078,18 +1219,18 @@ body
 
 @media only screen and (max-width: 900px)
 {
-    #results-page-view-smartphones.view-mode-complete > div .categories-specs-wrapper
+    #results-page-view-smartphones.view-mode-complete .smartphone-card .categories-specs-wrapper
     {
         flex-direction: column;
     }
 
-    #results-page-view-smartphones.view-mode-complete > div .categories-specs-wrapper > div
+    #results-page-view-smartphones.view-mode-complete .smartphone-card .categories-specs-wrapper > div
     {
         margin: 1em 0 0 0;
     }
 
-    #results-page-view-smartphones.view-mode-complete > div .categories-specs-wrapper > .column-container > div,
-    #results-page-view-smartphones.view-mode-complete > div .categories-specs-wrapper > div
+    #results-page-view-smartphones.view-mode-complete .smartphone-card .categories-specs-wrapper > .column-container > div,
+    #results-page-view-smartphones.view-mode-complete .smartphone-card .categories-specs-wrapper > div
     {
         width: 100%;
     }
@@ -1102,7 +1243,7 @@ body
 
 @media only screen and (max-width: 700px)
 {
-    #results-page-view-smartphones.view-mode-complete > div
+    #results-page-view-smartphones.view-mode-complete .smartphone-card
     {
         grid-template-rows: repeat(6, auto);
         grid-template-columns: repeat(2, auto);
@@ -1123,13 +1264,13 @@ body
 
 @media only screen and (max-width: 500px)
 {
-    #results-page-view-smartphones.view-mode-complete > div
+    #results-page-view-smartphones.view-mode-complete .smartphone-card
     {
         font-size: 13px;
         padding: 1.5rem;
     }
 
-    #results-page-view-smartphones.view-mode-complete > div .smartphone-image-and-network-technology .smartphone-image
+    #results-page-view-smartphones.view-mode-complete .smartphone-card .smartphone-image-and-network-technology .smartphone-image
     {
         max-width: 80px;
     }
@@ -1148,11 +1289,19 @@ body
     }
 }
 
+@media only screen and (max-width: 1024px)
+{
+    #results-page-intro-container > p
+    {
+        width: 60vw;
+    }
+}
+
 @media only screen and (max-width: 768px)
 {
     #results-page-intro-container > p
     {
-        width: 300px;
+        width: 80vw;
         font-size: 0.9rem;
     }
 
@@ -1171,11 +1320,6 @@ body
     #results-page-intro-container-buttons-container.row-container button:first-of-type
     {
         margin: 0 0 0.7rem 0;
-    }
-
-    #results-page-view-options-rows hr
-    {
-        display: none;
     }
 }
 
@@ -1228,7 +1372,7 @@ body
         font-size: 12px;
     }
 
-    #results-page-view-smartphones.view-mode-complete > div
+    #results-page-view-smartphones.view-mode-complete .smartphone-card
     {
         font-size: 12px;
     }
@@ -1236,7 +1380,7 @@ body
 
 @media only screen and (max-width: 359px)
 {
-    #results-page-view-smartphones.view-mode-complete > div
+    #results-page-view-smartphones.view-mode-complete .smartphone-card
     {
         grid-template-rows: repeat(7, auto);
         grid-template-columns: auto;
@@ -1251,18 +1395,327 @@ body
         justify-items: center;
     }
 
-    #results-page-view-smartphones.view-mode-complete > div .smartphone-image-and-network-technology
+    #results-page-view-smartphones.view-mode-complete .smartphone-card .smartphone-image-and-network-technology
     {
         justify-self: auto;
     }
 
-    #results-page-view-smartphones.view-mode-complete > div .categories-specs-wrapper
+    #results-page-view-smartphones.view-mode-complete .smartphone-card .categories-specs-wrapper
     {
         margin: 1em 0 0 0;
     }
 }
 
 /* End of Complete View Mode Styling */
+
+/* Start of Questions Recap Box */
+
+#questions-recap-container
+{
+    display: none;
+}
+
+#questions-recap-container .question-and-answer-container
+{
+    margin: 0 0 1rem 0;
+    text-align: left;
+}
+
+#questions-recap-container .question-and-answer-container .question
+{
+    display: flex;
+    margin: 0 0 0.3rem 0;
+}
+
+#questions-recap-container .question-and-answer-container .label
+{
+    min-width: 100px;
+    text-align: right;
+}
+
+#questions-recap-container .question-and-answer-container .text
+{
+    margin: 0 0 0 1rem;
+}
+
+#questions-recap-container .question-and-answer-container .answer
+{
+    display: flex;
+}
+
+#questions-recap-container hr
+{
+    width: 100%;
+
+    border: none;
+    border-top: 2px dotted #757A8A;
+}
+
+/* End of Questions Recap Box */
+
+/* Start of All Smartphone Shops Prices Box */
+
+#all-smartphone-shops-prices-container
+{
+    display: none;
+}
+
+#smartphone-purchase-options-wrapper
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* #smartphone-purchase-options-wrapper > div
+{
+    border-top: 2px dotted #757A8A;
+}
+
+#smartphone-purchase-options-wrapper > div:first-of-type
+{
+    border: none;
+} */
+
+#smartphone-purchase-options-wrapper > hr
+{
+    width: 90%;
+    display: none;
+
+    border-top: 2px dotted #757A8A;
+    box-sizing: border-box;
+
+    margin: 0;
+}
+
+#all-smartphone-shops-prices-container .smartphone-purchase-option-container
+{
+    width: 400px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    margin: 0 0 2rem 0;
+    padding: 2rem 0 0;
+}
+
+#all-smartphone-shops-prices-container .smartphone-purchase-option-container.hidden
+{
+    display: none;
+}
+
+#smartphone-purchase-options-wrapper .smartphone-purchase-option-container:not(.hidden) + hr
+{
+    display: block;
+}
+
+#all-smartphone-shops-prices-container #smartphone-purchase-options-wrapper > hr:last-of-type
+{
+    display: none;
+}
+
+#all-smartphone-shops-prices-container .smartphone-purchase-option-container .smartphone-price-text
+{
+    font-size: 2em;
+    font-weight: 700;
+}
+
+#all-smartphone-shops-prices-container .smartphone-purchase-option-container .shop-image
+{
+    max-width: 140px;
+    margin: 0 0 0.5rem 0;
+}
+
+#all-smartphone-shops-prices-container .smartphone-purchase-option-container .shop-product-link
+{
+    text-decoration: none;
+}
+
+#all-smartphone-shops-prices-container .smartphone-purchase-option-container .shop-product-link span
+{
+    font-size: 1em;
+    font-weight: 700;
+
+    background: linear-gradient(135deg, #F6D04E, #E89C45);
+    color: #000;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+
+    border: none;
+    border-radius: 4px;
+    
+    padding: 0.6rem 1.2rem;
+
+    cursor: pointer;
+}
+
+#all-smartphone-shops-prices-container .smartphone-purchase-option-container .shop-product-link span img
+{
+    margin: 0 0.5rem 0 0;
+}
+
+@media only screen and (max-width: 600px)
+{
+    #all-smartphone-shops-prices-container .smartphone-purchase-option-container
+    {
+        width: 350px;
+    }
+
+    #all-smartphone-shops-prices-container .smartphone-purchase-option-container .shop-product-link span
+    {
+        font-size: 0.9em;
+    }
+}
+
+@media only screen and (max-width: 500px)
+{
+    #all-smartphone-shops-prices-container .smartphone-purchase-option-container
+    {
+        width: 280px;
+    }
+
+    #all-smartphone-shops-prices-container .smartphone-purchase-option-container .smartphone-price-text
+    {
+        font-size: 1.3em;
+    }
+
+    #all-smartphone-shops-prices-container .smartphone-purchase-option-container .shop-image
+    {
+        max-width: 100px;
+    }
+
+    #all-smartphone-shops-prices-container .smartphone-purchase-option-container .shop-product-link span
+    {
+        font-size: 0.8em;
+
+        padding: 0.6rem 1rem;
+    }
+
+    #all-smartphone-shops-prices-container .smartphone-purchase-option-container .shop-product-link span img
+    {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+@media only screen and (max-width: 359px)
+{
+    #all-smartphone-shops-prices-container .smartphone-purchase-option-container
+    {
+        width: 250px;
+    }
+}
+
+/* End of All Smartphone Shops Prices Box */
+
+/* Start of Feedback related styling */
+
+#results-page-footer
+{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+#results-page-footer > div
+{
+    max-width: 50vw;
+
+    padding: 1em 2em;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+#results-page-footer > div:first-of-type
+{
+    margin: 0 2rem 0 0;
+}
+
+#results-page-footer p
+{
+    font-size: 0.9rem;
+}
+
+#results-page-footer a
+{
+    color: #079CFF;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+#results-page-show-feedback-panel-cta
+{
+    border: none;
+    background-color: transparent;
+    color: #079CFF;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+
+    padding: 0;
+
+    -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
+    cursor: pointer;
+}
+
+#feedback-panel-container
+{
+    display: none;
+}
+
+#feedback-panel-textarea
+{
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+
+    border: 1px solid #d2d2d2;
+    border-radius: 16px;
+
+    padding: 1em 2em;
+    box-sizing: border-box;
+
+    resize: none;
+}
+
+#feedback-panel-textarea:focus
+{
+    outline: none;
+}
+
+@media only screen and (max-width: 1200px)
+{
+    #results-page-footer
+    {
+        flex-direction: column;
+    }
+    
+    #results-page-footer > div:first-of-type
+    {
+        margin: 0 0 1rem 0;
+    }
+}
+
+@media only screen and (max-width: 600px)
+{
+    #feedback-panel-textarea
+    {
+        max-width: 300px;
+    }
+}
+
+@media only screen and (max-width: 400px)
+{
+    #feedback-panel-textarea
+    {
+        font-size: 0.8rem;
+        max-width: 250px;
+    }
+}
+
+/* End of Feedback related styling */
 
 /* End of Results Page */
 
