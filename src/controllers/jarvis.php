@@ -171,6 +171,8 @@ if(
 
             $previous_question_order_number = array_keys($_SESSION["questions_and_answers"])[count($_SESSION["questions_and_answers"]) - 1];
             $template_filename = sprintf(QUESTION_TEMPLATE_FILENAME_MODEL, $previous_question_order_number);
+
+            require($template_filename);
         }
         else
         {
@@ -179,8 +181,6 @@ if(
             echo false;
             exit;
         }
-
-        require($template_filename);
     }
 }
 else
