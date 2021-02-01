@@ -27,13 +27,31 @@ if(
 
     if(!defined("APPNAME")) { define("APPNAME", "BESTPHONE4YOU"); }
     if(!defined("BP4Y_APP_ROOT_PATH")) { define("BP4Y_APP_ROOT_PATH", $_SERVER["DOCUMENT_ROOT"] . "/"); }
+    define("BP4Y_QUESTIONS_DIRECTORY_PATH", BP4Y_APP_ROOT_PATH . "views/questions/");
 
     require(BP4Y_APP_ROOT_PATH . "helpers/question_order_number_definitions.php");
     require(BP4Y_APP_ROOT_PATH . "models/questions_and_answers.php");
 
+    $questions_filenames = scandir(BP4Y_QUESTIONS_DIRECTORY_PATH, SCANDIR_SORT_ASCENDING);
+
+    // Remove . and .. sym-links folders
+    $filenames_to_remove = array(".", "..");
+    foreach($filenames_to_remove as $filename)
+    {
+        $filename_array_key = array_search($filename, $questions_filenames);
+
+        if($filename_array_key !== false)
+        {
+            unset($questions_filenames[$filename_array_key]);
+        }
+    }
+
+    $questions_filenames = str_ireplace(".php", "", $questions_filenames); 
+    sort($questions_filenames, SORT_NUMERIC);   
+
     if(! $is_a_shared_results_page_request)
     {
-        define("QUESTION_TEMPLATE_FILENAME_MODEL", BP4Y_APP_ROOT_PATH . "views/questions/%d.php");
+        define("QUESTION_TEMPLATE_FILENAME_MODEL", BP4Y_QUESTIONS_DIRECTORY_PATH . "%d.php");
 
         class Question
         {
@@ -113,7 +131,7 @@ if(
         $_SESSION["questions_and_answers"] = array();
         $_SESSION["last_action"] = "start_procedure";
 
-        $template_filename = sprintf(QUESTION_TEMPLATE_FILENAME_MODEL, 1);
+        $template_filename = sprintf(QUESTION_TEMPLATE_FILENAME_MODEL, (int) $questions_filenames[0]);
 
         require($template_filename);
     }
@@ -133,22 +151,22 @@ if(
             $_SESSION["last_action"] = "next_question";
     
             $current_question_order_number = array_keys($_SESSION["questions_and_answers"])[count($_SESSION["questions_and_answers"]) - 1];
+            $current_question_order_number_filename_key = array_search($current_question_order_number, $questions_filenames);
+            $next_question_order_number_filename_key = $current_question_order_number_filename_key + 1;
     
             $_SESSION["questions_and_answers"][$current_question_order_number] = $_POST["response_value"];
     
-            $next_question_order_number = $current_question_order_number + 1;
-    
-            if( file_exists(sprintf(QUESTION_TEMPLATE_FILENAME_MODEL, $next_question_order_number)) )
+            if( file_exists(sprintf(QUESTION_TEMPLATE_FILENAME_MODEL, (int) $questions_filenames[$next_question_order_number_filename_key])) )
             {
-                while( !isset($question) && file_exists(sprintf(QUESTION_TEMPLATE_FILENAME_MODEL, $next_question_order_number)) )
+                while( !isset($question) && file_exists(sprintf(QUESTION_TEMPLATE_FILENAME_MODEL, (int) $questions_filenames[$next_question_order_number_filename_key])) )
                 {
-                    require(sprintf(QUESTION_TEMPLATE_FILENAME_MODEL, $next_question_order_number));
+                    require(sprintf(QUESTION_TEMPLATE_FILENAME_MODEL, (int) $questions_filenames[$next_question_order_number_filename_key]));
     
-                    $next_question_order_number++;
+                    $next_question_order_number_filename_key++;
                 }
             }
 
-            if( !isset($question) && !file_exists(sprintf(QUESTION_TEMPLATE_FILENAME_MODEL, $next_question_order_number)) )
+            if( !isset($question) && !file_exists(sprintf(QUESTION_TEMPLATE_FILENAME_MODEL, (int) $questions_filenames[$next_question_order_number_filename_key])) )
             {
                 $no_more_questions_to_ask = true;
             }
