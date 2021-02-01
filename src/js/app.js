@@ -142,7 +142,7 @@ document.addEventListener("click", function(e)
 {
     if(e.target)
     {
-        if(e.target.matches(".bp4y-start-procedure-button"))
+        if(e.target.matches("#bp4y-start-procedure-button"))
         {
             queryQuestionController("start_procedure");
         }
