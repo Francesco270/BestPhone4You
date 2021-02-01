@@ -25,7 +25,7 @@
     // Display the question only if there is at least one smartphone which has the expandable memory by using a microSD card 
     if($expandable_memory_smartphones_count > 0)
     {
-        $question = new Question(__FILE__, "Lo Smartphone deve avere la memoria espandibile?");
+        $question = new Question(__FILE__, $questions_and_answers[EXPANDABLE_MEMORY_QUESTION_ORDER_NUMBER]["question_text"]);
     }
 
     if(isset($question)):
