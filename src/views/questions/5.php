@@ -22,7 +22,7 @@
         }
     }
 
-    // Display the question only if there at least one smartphone which has the expandable memory by using a microSD card 
+    // Display the question only if there is at least one smartphone which has the expandable memory by using a microSD card 
     if($expandable_memory_smartphones_count > 0)
     {
         $question = new Question(__FILE__, "Lo Smartphone deve avere la memoria espandibile?");
