@@ -43,6 +43,13 @@
                 1 => 'SÌ'
             )
         ),
+        LARGE_BATTERY_QUESTION_ORDER_NUMBER => array(
+            "question_text" => "Lo Smartphone deve avere una batteria molto capiente?",
+            "question_responses" => array(
+                0 => 'NON MI INTERESSA',
+                1 => 'SÌ'
+            )
+        ),
         DUALSIM_QUESTION_ORDER_NUMBER => array(
             "question_text" => "Lo Smartphone deve essere DualSIM?",
             "question_responses" => array(
