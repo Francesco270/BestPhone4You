@@ -50,6 +50,13 @@
                 1 => 'SÌ'
             )
         ),
+        WIRELESS_CHARGING_QUESTION_ORDER_NUMBER => array(
+            "question_text" => "Lo Smartphone deve avere la ricarica wireless?",
+            "question_responses" => array(
+                0 => 'NON MI INTERESSA',
+                1 => 'SÌ'
+            )
+        ),
         DUALSIM_QUESTION_ORDER_NUMBER => array(
             "question_text" => "Lo Smartphone deve essere DualSIM?",
             "question_responses" => array(
