@@ -70,5 +70,12 @@
                 0 => 'NON MI INTERESSA',
                 1 => 'SÌ'
             )
+        ),
+        _5G_QUESTION_ORDER_NUMBER => array(
+            "question_text" => "Lo Smartphone deve essere 5G?",
+            "question_responses" => array(
+                0 => 'NON MI INTERESSA',
+                1 => 'SÌ'
+            )
         )
     );
