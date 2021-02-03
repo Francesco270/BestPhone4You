@@ -27,7 +27,7 @@
     Alla fine ti proporremo solo gli Smartphone che fanno al caso tuo,
     con i relativi prezzi e i link d'acquisto ai principali shop online.
 </p>
-<button id="bp4y-start-procedure-button" class="bp4y-button" type="button">COMINCIA A SCEGLIERE</button>
+<button class="bp4y-start-procedure-button bp4y-button" type="button">COMINCIA A SCEGLIERE</button>
 <input type="hidden" id="bp4y-token" value="<?php echo $_SESSION['csrf_token']; ?>">
 <?php
     if( isset($_SESSION["questions_and_answers"]) )

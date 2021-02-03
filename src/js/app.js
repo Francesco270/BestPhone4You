@@ -23,7 +23,7 @@ function refreshEventListeners()
 
 function disableViewButtons()
 {
-    document.querySelectorAll("#bp4y-start-procedure-button, .bp4y-response-confirm-button, #bp4y-back-button").forEach(function(element)
+    document.querySelectorAll(".bp4y-start-procedure-button, .bp4y-response-confirm-button, #bp4y-back-button").forEach(function(element)
     {
         element.disabled = true;
     });
@@ -142,7 +142,7 @@ document.addEventListener("click", function(e)
 {
     if(e.target)
     {
-        if(e.target.matches("#bp4y-start-procedure-button"))
+        if(e.target.matches(".bp4y-start-procedure-button"))
         {
             queryQuestionController("start_procedure");
         }
