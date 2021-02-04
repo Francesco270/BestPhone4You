@@ -10,6 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Scegli lo Smartphone perfetto rispondendo a poche e semplici domande. Quando avrai finito vedrai solo Smartphone che fanno al caso tuo!">
     <link rel="stylesheet" href="css/style.css">
     <script src="js/app.js" defer="defer"></script>
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
