@@ -156,7 +156,7 @@
             </div>
         <img src="./assets/icons/finish-flag.svg" style="transform: rotateY(180deg);">
     </div>
-    <p>Condividi il link a questa pagina oppure salvalo per tornare qui in un secondo momento.<br>Verrà eseguita automaticamente una nuova ricerca tenendo conto delle risposte che hai già dato.</p>
+    <p>Condividi il link a questa pagina oppure salvalo per tornare qui in un secondo momento.<br>Verrà eseguita automaticamente una nuova ricerca tenendo conto delle risposte già date.</p>
     <div id="results-page-intro-container-buttons-container" class="row-container" style="margin: 0.5rem 0 0 0;">
         <button id="results-page-copy-link-for-sharing-button" class="bp4y-button small primary" data-url-for-sharing="<?php echo $url_for_results_page_sharing; ?>"><img src="./assets/icons/copy.svg"><span>COPIA LINK PER LA CONDIVISIONE</span></button>
         <button id="results-page-review-questions-button" class="bp4y-button small secondary"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" fill="#2d3039"/></svg>RIVEDI LE DOMANDE</button>
