@@ -11,8 +11,11 @@ if(isset($_SESSION["csrf_token"]) && isset($_POST["token"]) && $_POST["token"] =
         $to      = 'root@localhost';
         $subject = 'Nuovo Feedback ricevuto';
         $message = $_POST["feedback_message"];
+        $headers = array(
+            "From" => "nouser@matrix.net"
+        );
     
-        mail($to, $subject, $message);
+        mail($to, $subject, $message, $headers);
 
         echo true;
     }
