@@ -24,6 +24,8 @@ TODO List:
     ☐ If a shared results page does not produce results, show a notice
       (This can happen, because the prices have changed or the smartphones have been removed)
   ☐ Other:
+    ☐ Make the WebApp fully accessible by people with disabilities, using ARIA attributes and enhancing keyboard navigation
+    ☐ Use features/questions names instead of numbers for the filenames of questions views, queries conditions and binders
     ✔ Change iOS Logo Word Mark with a bolder one
     ✔ Sanitize and do proper checks to the responses values
     ☐ Use the EM unit for the font-sizes and other sizes
