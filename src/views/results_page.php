@@ -274,7 +274,7 @@
                     <span><b>Memoria Interna:</b> <?php echo $smartphone["capacitaMemoriaInterna"]; ?> GB</span>
                     <span><b>Memoria Espandibile:</b> <?php echo $smartphone["memoriaEspandibile"] == 1 ? "Sì" : "No"; ?></span>
                     <span><b>Jack Audio:</b> <?php echo $smartphone["jackAudio"] == 1 ? "Sì" : "No"; ?></span>
-                    <span><b>Sensore di impronte digitali:</b> <?php echo $smartphone["sensoreImpronteDigitali == 1"] ? "Sì" : "No"; ?></span>
+                    <span><b>Sensore di impronte digitali:</b> <?php echo $smartphone["sensoreImpronteDigitali"] == 1 ? "Sì" : "No"; ?></span>
                 </div>
                 <div class="column-container align-flex-start" style="min-width: 200px;">
                     <div class="category-specs">
